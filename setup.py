@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 import os
 from setuptools import setup, find_package
-from __version__ import about
+import parser.__version__ as ver
 
 
-setup(name=about['__title__'],
-      version=about['__version__'],
+setup(name=ver.__title__,
+      version=ver.__version__,
       package=find_packages(),
-      url=about['__url__'],
-      install_requires=REQUIRED,
+      url=ver.__url__,
       include_package_data=True,
       zip_safe=False,
       )
