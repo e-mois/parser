@@ -1,2 +1,6 @@
 .idea/
 dist/
+.git/
+parser.egg-info/
+requirements.txt
+parser/__pycache__/

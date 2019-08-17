@@ -33,12 +33,13 @@ def replace_link(p_list):
             print(p.text)
 
 
-def main(url):
+def parser(url):
+    #replace_link(get_data(get_html(url)))
     try:
         return replace_link(get_data(get_html(url)))
     except Exception:
         print('Error! Input correct url please')
 
 
-if __name__ == '__main__':
-    main(sys.argv[1])
+if __name__ == '__parser__':
+    parser(sys.argv[1])
