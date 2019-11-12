@@ -1,6 +1,6 @@
 import sys
-import re
 import requests
+import re
 from bs4 import BeautifulSoup
 
 
@@ -22,24 +22,27 @@ def get_data(html):
 
 
 def replace_link(p_list):
+    text = ""
     for p in p_list:
-        a_text = p.find('a')
-        if a_text is None:
-            print(p.text)
-        else:
-            a_text_href = a_text.get('href')
-            replace_a = '[' + a_text.text + '] (' + a_text_href + ')'
-            a_text.replaceWith(replace_a)
-            print(p.text)
+        a_list = p.find_all('a')
+        for a in a_list:
+            if a is not None:
+                a_href = a.get('href')
+                replace_a = f"[{a.text}]({a_href})"
+                a.replaceWith(replace_a)
+        text = f'{text} {p.text}'
+    return text
 
 
-def parser(url):
-    #replace_link(get_data(get_html(url)))
+def parser_article(url):
     try:
-        return replace_link(get_data(get_html(url)))
+        html = get_html(url)
+        data = get_data(html)
+        ready_text = replace_link(data)
+        return ready_text
     except Exception:
-        print('Error! Input correct url please')
+        return 'Error! Input correct url please'
 
 
-if __name__ == '__parser__':
+if __name__ == '__main__':
     parser(sys.argv[1])
